@@ -20,7 +20,7 @@
   <dd>
     2 months ago
   </dd>
-
+<% if @user_id == @photo.owner_id%>
   <dt>Edit photo</dt>
   <dd>
     <form action="/update_photo/<%= @photo.id %>">
@@ -33,7 +33,7 @@
       <button>Update photo</button>
     </form>
   </dd>
-
+<%end%>
   <dt>Delete photo</dt>
   <dd>
     <a href="/delete_photo/<%= @photo.id %>;">
@@ -70,7 +70,6 @@
 </table>
 
 <h3>Add a new comment</h3>
-
 <form action="/insert_comment_record" method="post">
   <input id="browser_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
 

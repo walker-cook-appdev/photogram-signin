@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = Photo.all.order({:created_at => :desc})
     render({ :template => "photos/all_photos.html.erb"})
   end
 
@@ -18,6 +18,7 @@ class PhotosController < ApplicationController
   def show
     p_id = params.fetch("the_photo_id")
     @photo = Photo.where({:id => p_id }).first
+    @user_id = session.fetch(:user_id)
     render({:template => "photos/details.html.erb"})
   end
 
